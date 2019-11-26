@@ -1,52 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_STATUS",
-      "label": "Status",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "mysql",
-      "pluginName": "MySQL"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar Gauge",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "6.4.3"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "mysql",
-      "name": "MySQL",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -64,12 +16,12 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": null,
+  "id": 1,
   "links": [],
   "panels": [
     {
       "cacheTimeout": null,
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -143,7 +95,7 @@
             "nullValueMode": "connected",
             "thresholds": [
               {
-                "color": "dark-green",
+                "color": "blue",
                 "value": null
               },
               {
@@ -303,7 +255,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#37872D"
       ],
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "format": "bytes",
       "gauge": {
         "maxValue": 100,
@@ -427,7 +379,7 @@
         "#C4162A",
         "#d44a3a"
       ],
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -559,7 +511,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#37872D"
       ],
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "format": "deckbytes",
       "gauge": {
         "maxValue": 100,
@@ -673,7 +625,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "gridPos": {
         "h": 2,
         "w": 6,
@@ -773,7 +725,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "gridPos": {
         "h": 14,
         "w": 2,
@@ -870,7 +822,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "gridPos": {
         "h": 14,
         "w": 2,
@@ -990,7 +942,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1099,7 +1051,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "gridPos": {
         "h": 4,
         "w": 6,
@@ -1155,7 +1107,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  fecha AS \"time\",\n  diskTemperature1 AS \"HGST 1\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nORDER BY fecha",
+          "rawSql": "SELECT\n  fecha AS \"time\",\n  diskTemperature1 AS \"HGST 1\",\n  diskTemperature2 AS \"HGST 2\",\n  diskTemperature3 AS \"Disco 3\",\n  diskTemperature4 AS \"Disco 4\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nORDER BY fecha",
           "refId": "B",
           "select": [
             [
@@ -1171,27 +1123,7 @@
                 ],
                 "type": "alias"
               }
-            ]
-          ],
-          "table": "medidas",
-          "timeColumn": "fecha",
-          "timeColumnType": "datetime",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  fecha AS \"time\",\n  diskTemperature2 AS \"HGST 2\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nORDER BY fecha",
-          "refId": "C",
-          "select": [
+            ],
             [
               {
                 "params": [
@@ -1205,27 +1137,7 @@
                 ],
                 "type": "alias"
               }
-            ]
-          ],
-          "table": "medidas",
-          "timeColumn": "fecha",
-          "timeColumnType": "datetime",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  fecha AS \"time\",\n  diskTemperature3 AS \"Disco 3\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nORDER BY fecha",
-          "refId": "D",
-          "select": [
+            ],
             [
               {
                 "params": [
@@ -1239,27 +1151,7 @@
                 ],
                 "type": "alias"
               }
-            ]
-          ],
-          "table": "medidas",
-          "timeColumn": "fecha",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  fecha AS \"time\",\n  diskTemperature4 AS \"Disco 4\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nORDER BY fecha",
-          "refId": "E",
-          "select": [
+            ],
             [
               {
                 "params": [
@@ -1277,7 +1169,7 @@
           ],
           "table": "medidas",
           "timeColumn": "fecha",
-          "timeColumnType": "timestamp",
+          "timeColumnType": "datetime",
           "where": [
             {
               "name": "$__timeFilter",
@@ -1338,7 +1230,7 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "fill": 5,
       "fillGradient": 0,
       "gridPos": {
@@ -1477,7 +1369,7 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "decimals": null,
       "fill": 1,
       "fillGradient": 10,
@@ -1515,7 +1407,7 @@
       "seriesOverrides": [
         {
           "alias": "Out",
-          "yaxis": 2
+          "yaxis": 1
         }
       ],
       "spaceLength": 10,
@@ -1535,7 +1427,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(fecha,5s),\n  ifHCInOctets / 5 AS \"In\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nGROUP BY 1\nORDER BY $__timeGroup(fecha,5s)",
+          "rawSql": "SELECT\n  $__timeGroupAlias(fecha,5s),\n  ifHCInOctets /40 AS \"In\",\n  ifHCOutOctets /40 AS \"Out\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nGROUP BY 1\nORDER BY $__timeGroup(fecha,5s)",
           "refId": "A",
           "select": [
             [
@@ -1551,35 +1443,7 @@
                 ],
                 "type": "alias"
               }
-            ]
-          ],
-          "table": "medidas",
-          "timeColumn": "fecha",
-          "timeColumnType": "datetime",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        },
-        {
-          "format": "time_series",
-          "group": [
-            {
-              "params": [
-                "5s",
-                "none"
-              ],
-              "type": "time"
-            }
-          ],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(fecha,5s),\n  ifHCOutOctets / 5 AS \"Out\"\nFROM medidas\nWHERE\n  $__timeFilter(fecha)\nGROUP BY 1\nORDER BY $__timeGroup(fecha,5s)",
-          "refId": "B",
-          "select": [
+            ],
             [
               {
                 "params": [
@@ -1642,7 +1506,7 @@
           "logBase": 1,
           "max": "125000000",
           "min": "0",
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -1695,7 +1559,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_STATUS}",
+      "datasource": "Status",
       "fill": 5,
       "fillGradient": 0,
       "gridPos": {
@@ -1861,5 +1725,5 @@
   "timezone": "",
   "title": "DS412+",
   "uid": "HetM1MbZz",
-  "version": 16
+  "version": 28
 }
